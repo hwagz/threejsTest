@@ -19,3 +19,15 @@ body {
   height: 100px;
   z-index: 10;
 }
+
+.x {
+  color: red;
+}
+
+.y {
+  color: green;
+}
+
+.z {
+  color: blue;
+}
