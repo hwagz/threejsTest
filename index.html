@@ -9,7 +9,7 @@
     <script src="three.js"></script>
 
   </head>
-  <body ng-app="three" ng-controller="threeCtrl">
+  <body ng-app="three" ng-controller="threeCtrl" ng-keydown="keyHandler($event)" tabindex="0">
     <div id="#cameraCtrl">
       <button class="x" ng-click="cameraAdjust('x',true)">+X</button>
       <button class="x" ng-click="cameraAdjust('x',false)">-X</button>
