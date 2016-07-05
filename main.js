@@ -15,7 +15,7 @@ angular
     $scope.scene.add($scope.axis);
 
     $scope.cubeGeometry = new THREE.BoxGeometry(5,5,5);
-    $scope.cubeMaterial = new THREE.MeshBasicMaterial({color:0xdddddd, wireframe:true});
+    $scope.cubeMaterial = new THREE.MeshBasicMaterial({color:0x00ff00, wireframe:true});
 
     $scope.cube = new THREE.Mesh($scope.cubeGeometry,$scope.cubeMaterial);
 
@@ -32,7 +32,14 @@ angular
     $scope.camera.lookAt($scope.scene.position);
 
     $('#webGL-container').append($scope.renderer.domElement);
-    $scope.renderer.render($scope.scene,$scope.camera);
+
+    function render() {
+      requestAnimationFrame( render );
+      $scope.cube.rotation.x += 0.05;
+      $scope.cube.rotation.y += 0.05;
+      $scope.renderer.render( $scope.scene, $scope.camera );
+    }
+    render();
 
     $scope.cameraAdjust = function(axis,positive){
       var amount = -1;
@@ -41,7 +48,6 @@ angular
       }
       $scope.camera.position[axis]+=amount
       $scope.camera.lookAt($scope.scene.position);
-      $scope.renderer.render($scope.scene,$scope.camera);
     };
 
 
