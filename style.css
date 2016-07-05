@@ -1,0 +1,21 @@
+body {
+  background-color: black;
+  margin: 0;
+  overflow: hidden;
+}
+
+#webGL-container {
+  position: absolute;
+  z-index: 5;
+}
+
+#cameraCtrl{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: fuchsia;
+  color: black;
+  width: 100%;
+  height: 100px;
+  z-index: 10;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Three.js Test</title>
+     <link rel="stylesheet" href="style.css" charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="three.js"></script>
+
+  </head>
+  <body ng-app="three" ng-controller="threeCtrl">
+    <div id="#cameraCtrl">
+      <button ng-click="cameraAdjust('x',true)">+X</button>
+      <button ng-click="cameraAdjust('x',false)">-X</button>
+      <button ng-click="cameraAdjust('y',true)">+Y</button>
+      <button ng-click="cameraAdjust('y',false)">-Y</button>
+      <button ng-click="cameraAdjust('z',true)">+Z</button>
+      <button ng-click="cameraAdjust('z',false)">-Z</button>
+    </div>
+    <div id="webGL-container"></div>
+
+
+    <script src="main.js"></script>
+  </body>
+</html>
