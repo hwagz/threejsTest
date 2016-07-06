@@ -11,12 +11,12 @@
   </head>
   <body ng-app="three" ng-controller="threeCtrl" ng-keydown="keyHandler($event)" tabindex="0">
     <div id="#cameraCtrl">
-      <button class="x" ng-click="cameraAdjust('x',true)">+X</button>
-      <button class="x" ng-click="cameraAdjust('x',false)">-X</button>
-      <button class="y" ng-click="cameraAdjust('y',true)">+Y</button>
-      <button class="y" ng-click="cameraAdjust('y',false)">-Y</button>
-      <button class="z" ng-click="cameraAdjust('z',true)">+Z</button>
-      <button class="z" ng-click="cameraAdjust('z',false)">-Z</button>
+      <button class="x" ng-click="cameraAdjust('x',true)">+X (A)</button>
+      <button class="x" ng-click="cameraAdjust('x',false)">-X (D)</button>
+      <button class="y" ng-click="cameraAdjust('y',true)">+Y (W)</button>
+      <button class="y" ng-click="cameraAdjust('y',false)">-Y (S)</button>
+      <button class="z" ng-click="cameraAdjust('z',true)">+Z (Q)</button>
+      <button class="z" ng-click="cameraAdjust('z',false)">-Z (E)</button>
     </div>
     <div id="webGL-container"></div>
 

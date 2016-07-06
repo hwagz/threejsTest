@@ -8,44 +8,59 @@ angular
     $scope.camera = new THREE.PerspectiveCamera(45,window.innerWidth/(window.innerHeight-50), .1,500);
     $scope.renderer = new THREE.WebGLRenderer();
 
-    $scope.renderer.setClearColor(0x000000);
+    $scope.renderer.setClearColor(0xdddddd);
     $scope.renderer.setSize(window.innerWidth,window.innerHeight-50);
+    $scope.renderer.shadowMapEnabled = true;
+    $scope.renderer.shadowMapSoft = true;
 
     $scope.axis = new THREE.AxisHelper(10);
     $scope.scene.add($scope.axis);
 
+    var grid = new THREE.GridHelper(25,5);
+    var color = new THREE.Color("rgb(255,0,0)");
+    grid.setColors(color,0x000000);
+
+    $scope.scene.add(grid);
+
     $scope.cubeGeometry = new THREE.BoxGeometry(5,5,5);
-    $scope.cubeMaterial = new THREE.MeshBasicMaterial({color:0x00ff00, wireframe:true});
+    $scope.cubeMaterial = new THREE.MeshLambertMaterial({color:0xff3300});
+
 
     $scope.cube = new THREE.Mesh($scope.cubeGeometry,$scope.cubeMaterial);
 
-    $scope.cube2 = new THREE.Mesh($scope.cubeGeometry,$scope.cubeMaterial);
+    $scope.cube.position.x = 2.5;
+    $scope.cube.position.y = 5.5;
+    $scope.cube.position.z = 2.5;
+    $scope.cube.castShadow = true;
 
-    $scope.cube.position.x = 10;
-    $scope.cube.position.y = 10;
-    $scope.cube.position.z = 10;
+    var planeGeometry = new THREE.PlaneGeometry(50,50,50);
+    var planeMaterial = new THREE.MeshLambertMaterial({color:0xffffff});
+    var plane = new THREE.Mesh(planeGeometry,planeMaterial);
 
-    $scope.cube2.position.x = -10;
-    $scope.cube2.position.y = 10;
-    $scope.cube2.position.z = 20;
 
+    plane.rotation.x = -.5*Math.PI;
+    plane.receiveShadow = true;
+    $scope.scene.add(plane);
     $scope.scene.add($scope.cube);
-    $scope.scene.add($scope.cube2);
+
+    var spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.castShadow = true;
+    spotLight.position.set(15,30,15);
+
+    $scope.scene.add(spotLight);
 
     $scope.camera.position.x = 40;
     $scope.camera.position.y = 25;
     $scope.camera.position.z = 40;
 
-    $scope.camera.lookAt($scope.scene.position);
+    $scope.camera.lookAt($scope.cube.position);
 
     $('#webGL-container').append($scope.renderer.domElement);
 
     function render() {
       requestAnimationFrame( render );
       $scope.cube.rotation.x += 0.05;
-      $scope.cube.rotation.y += 0.05;
-      $scope.cube2.rotation.x += 0.05;
-      $scope.cube2.rotation.y += 0.05;
+      $scope.cube.rotation.z += 0.05;
       $scope.renderer.render( $scope.scene, $scope.camera );
     }
     render();
@@ -57,7 +72,7 @@ angular
           amount *= -1;
       }
       $scope.camera.position[axis]+=amount
-      $scope.camera.lookAt($scope.scene.position);
+      $scope.camera.lookAt($scope.cube.position);
     };
     // Handles key presses
     $scope.keyHandler = function(e){
@@ -80,6 +95,4 @@ angular
       }
 
     };
-
-
   }]);
